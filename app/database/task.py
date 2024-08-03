@@ -4,11 +4,11 @@ def output_formatter(results):
     out = []
     for result in results:
         res = {
-            "id":results[0],
-            "name":results[1],
-            "summary":results[2],
-            "description":results[3],
-            "is_done":results[4],
+            "id":result[0],
+            "name":result[1],
+            "summary":result[2],
+            "description":result[3],
+            "is_done":result[4]
         }
         out.append(res)
     return out
@@ -33,7 +33,7 @@ def insert(task_data):
     task_tuple = (
         task_data.get("name"),
         task_data.get("summary"),
-        task_data.get("description"),
+        task_data.get("description")
     )
     statement = """
         INSERT INTO task(

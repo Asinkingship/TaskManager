@@ -10,14 +10,14 @@ app = Flask(__name__)
 
 @app.get("/tasks")
 def get_all_tasks():
-    task_list = task.scan();
+    task_list = task.scan()
     out = {
         "tasks" : task_list,
         "ok" : True
     }
-    return out;
+    return out
 
-@app.get("/tasks/<init:pk>/")
+@app.get("/tasks/<int:pk>/")
 def get_single_task(pk):
     single_task = task.select_by_id(pk)
     if single_task:
@@ -25,7 +25,7 @@ def get_single_task(pk):
             "task": single_task,
             "ok": True
         }
-        return out;
+        return out
     out = {
         "ok": False,
         "message":"Not Found"
@@ -38,13 +38,13 @@ def create_task():
     task.insert(task_data)
     return "", 204
 
-@app.put("/tasks/<init:pk>/")
+@app.put("/tasks/<int:pk>/")
 def update_task(pk):
     task_data = request.json
     task.update_by_id(task_data,pk)
     return "", 204
 
-@app.delete("/tasks/<init:pk>/")
+@app.delete("/tasks/<int:pk>/")
 def delete_task(pk):
     task.delet_by_id(pk)
     return "", 204
